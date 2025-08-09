@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
-  imports: [RouterOutlet, ShoppingCartComponent]
+  imports: [RouterModule, ShoppingCartComponent]
 })
 export class AppComponent {
   title = 'minha-loja';
