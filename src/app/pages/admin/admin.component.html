@@ -2,14 +2,14 @@
 <p>Bem-vindo ao painel de administração. Aqui você pode gerenciar os produtos, categorias e pedidos da loja.</p>
 <nav>
     <ul>
-        <li>
-            <a routerLink="dashboard">Dashboard</a>
-        </li>
-        <li>
-            <a routerLink="manage-products" routerLinkActive="active">Gerenciar Produtos</a>    
-        </li>
+        @for (route of subRoutes; track route.path) {
+            <li>
+                <a [routerLink]="route.path" routerLinkActive="active">{{ route.label }}</a>
+            </li>
+        }
     </ul>
 </nav>
 <hr>
+<p>{{ actionMessage() }}</p>
 <router-outlet></router-outlet>
 

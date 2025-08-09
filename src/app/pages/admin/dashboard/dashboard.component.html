@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<h3>Dashboard</h3>
+<p>Informações e estatísticas gerais.</p>
+<button (click)="onAction()">Realizar Ação no Dashboard</button>
+
+<hr>
+
+@defer (on interaction) {
+    <app-reports></app-reports>
+} @placeholder {
+    <button>Gerar Relatório</button>
+}

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ReviewsComponent } from '../../components/reviews/reviews.component';
 import { CartService, Product } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
-  standalone: false,
+  standalone: true,
+  imports: [ReviewsComponent, RouterModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })

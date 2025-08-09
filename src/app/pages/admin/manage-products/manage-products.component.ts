@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AdminComponent } from '../admin.component';
 
 @Component({
   selector: 'app-manage-products',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './manage-products.component.scss'
 })
 export class ManageProductsComponent {
+  adminComponent = inject(AdminComponent);
 
+  onAction() {
+    this.adminComponent.incrementActions();
+  }
 }
