@@ -12,6 +12,9 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ManageProductsComponent } from './pages/admin/manage-products/manage-products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
+import { ReviewDetailComponent } from './pages/review-detail/review-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     DashboardComponent,
     ManageProductsComponent,
     ShoppingCartComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    AboutComponent,
+    ManageUsersComponent,
+    ReviewDetailComponent
   ],
   imports: [
     BrowserModule,
