@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AdminComponent } from '../admin.component';
 
 @Component({
   selector: 'app-manage-users',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './manage-users.component.scss'
 })
 export class ManageUsersComponent {
+  adminComponent = inject(AdminComponent)
 
+  onAction() {
+    this.adminComponent.incrementActions();
+  }
 }

@@ -1,1 +1,10 @@
-<p>dashboard works!</p>
+<h2>Dashboard</h2>
+<button (click)="onAction()">Aumentar Contador</button>
+
+<hr>
+
+@defer (on interaction) {
+    <app-reports></app-reports>
+} @placeholder {
+    <button>Gerar relatórios</button>
+}

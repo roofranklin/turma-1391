@@ -15,6 +15,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.component';
 import { ReviewDetailComponent } from './pages/review-detail/review-detail.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReviewDetailComponent } from './pages/review-detail/review-detail.compo
     ReviewsComponent,
     AboutComponent,
     ManageUsersComponent,
-    ReviewDetailComponent
+    ReviewDetailComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
