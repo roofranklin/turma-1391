@@ -1,3 +1,13 @@
+@if (product()) {
+  <h3>Detalhes do produto: {{ product()?.title }}</h3>
+  <p>Preço: {{ product()?.price }}</p>
+  <p>Descrição: {{ product()?.description }}</p>
+  <p>Categoria: {{ product()?.category }}</p>
+  <img [src]="product()?.image" alt="{{ product()?.title }}">
+} @else {
+  <p>Carregando detalhes do produto...</p>
+}
+
 <button (click)="addToCart()">
   Add to Cart
 </button>

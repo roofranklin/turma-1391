@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { map, switchMap } from 'rxjs';
+
+import { ProductService } from '../../services/product.service';
 import { ReviewsComponent } from '../../components/reviews/reviews.component';
-import { CartService, Product } from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,34 +14,24 @@ import { CartService, Product } from '../../services/cart.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent {
 
-  product: Product | undefined;
+  private productService = inject(ProductService);
+  private cartService = inject(CartService);
+  private route = inject(ActivatedRoute);
 
-  constructor(
-    private route: ActivatedRoute,
-    private cartService: CartService
-  ) {}
+  public product = toSignal(
+    this.route.paramMap.pipe(
+      map(params => Number(params.get('id'))),
+      switchMap(id => this.productService.getProductById(id))
+    )
+  );
 
-  ngOnInit(): void {
-    
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(`Product ID na rota: ${id}`);
-
-    // Simulando a busca do produto por ID
-    if(!isNaN(id)) {
-      this.product = {
-        id: id,
-        name: `Product ${id}`,
-        price: 50 * id // Exemplo de preço
-      };
-    }
-    console.log(`Produto carregado: ${this.product?.name}`);
-  }
   addToCart(): void {
-    if (this.product) {
-      this.cartService.addToCart(this.product);
-      console.log(`Produto adicionado ao carrinho: ${this.product.name}`);
-    }
+  const product = this.product();
+  if (product) {
+    this.cartService.addToCart(product);
+    console.log(`Produto adicionado ao carrinho: ${product.title}`);
+  }
 }
 }

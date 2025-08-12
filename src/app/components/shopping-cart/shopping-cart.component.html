@@ -5,7 +5,7 @@
  <hr>
  @for (item of cartService.items(); track item.id) {
     <div class="cart-item">
-        <p>{{ item.name }} - R$ {{ item.price }}</p>
+        <p>{{ item.title }} - R$ {{ item.price }}</p>
     </div>
 } @empty {
     <p>Seu carrinho está vazio.</p>

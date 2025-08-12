@@ -1,10 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Product } from '../interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +17,6 @@ export class CartService {
 
   addToCart(product: Product) {
     this.cartItems.update(items => [...items, product]);
-    console.log(`Produto adicionado: ${product.name}`);
+    console.log(`Produto adicionado: ${product.title}`);
   }
 }
