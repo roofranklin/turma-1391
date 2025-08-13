@@ -1,0 +1,12 @@
+@if (categories()) {
+    <ul>
+        <li>
+            <button (click)="select(null)">Todas</button>
+        </li>
+        @for (category of categories(); track category) {
+            <li>
+                <button (click)="select(category)">{{ category }}</button>
+            </li>
+        }
+    </ul>
+}

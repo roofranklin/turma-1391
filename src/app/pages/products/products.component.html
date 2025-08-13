@@ -1,4 +1,7 @@
 <h2>Nossos produtos</h2>
+
+<app-category-list (categorySelected)="onCategorySelected($event)"></app-category-list>
+
 <ul>
    @for (product of products(); track product.id) {
      <li>
