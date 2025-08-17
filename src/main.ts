@@ -1,6 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
+import { AppModule } from './app/app.module';
 
 import { AppComponent } from './app/app.component';
 import { HomeComponent } from './app/pages/home/home.component';
@@ -27,8 +29,9 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'manage-products', component: ManageProductsComponent },
+      { path: 'edit-product/:id', component: ManageProductsComponent },
       { path: 'users', component: ManageUsersComponent }
-    ] 
+    ]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
@@ -37,6 +40,7 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    importProvidersFrom(AppModule)
   ]
 }).catch(err => console.error(err));

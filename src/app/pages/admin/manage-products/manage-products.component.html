@@ -1,3 +1,73 @@
-<h3>Gerenciar Produtos</h3>
-<p>Adicione, edite ou remova produtos.</p>
-<button (click)="onAction()">Realizar Ação em Produtos</button>
+<section class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ isEditMode ? 'Editar Produto' : 'Adicionar Novo Produto' }}</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input type="text" id="title" formControlName="title" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Preço</label>
+          <input type="number" id="price" formControlName="price" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Descrição</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+        <button type="submit" [disabled]="productForm.invalid || status() === 'loading'" class="btn btn-primary">
+          @if (status() === 'loading') {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span>Salvando...</span>
+          } @else {
+            <span>{{ isEditMode ? 'Salvar Alterações' : 'Adicionar Produto' }}</span>
+          }
+        </button>
+      </form>
+
+      <div class="mt-4">
+        @switch (status()) {
+          @case ('success') {
+            <div class="alert alert-success">
+              {{ isEditMode ? 'Produto atualizado com sucesso!' : 'Produto adicionado com sucesso!' }}
+            </div>
+          }
+          @case ('error') { <div class="alert alert-danger">Erro: {{ errorMessage() }}</div> }
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4" *ngIf="!isEditMode">
+    <div class="card-header">
+      <h3>Lista de Produtos</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products(); track product.id) {
+            <tr>
+              <td>{{ product.title }}</td>
+              <td>{{ product.price | currency:'BRL' }}</td>
+              <td>
+                <a [routerLink]="['/admin', 'edit-product', product.id]" class="btn btn-secondary btn-sm me-2">Editar</a>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteProduct(product.id)">
+                  Deletar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
