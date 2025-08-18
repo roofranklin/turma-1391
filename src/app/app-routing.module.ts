@@ -28,6 +28,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'manage-products', component: ManageProductsComponent },
+      { path: 'edit-product/:id', component: ManageProductsComponent },
       { path: 'users', component: ManageUsersComponent }
     ] 
   },
