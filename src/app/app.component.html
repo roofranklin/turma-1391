@@ -20,6 +20,17 @@
             <a class="nav-link" routerLink="/admin">Area administrativa</a>
           </li>
         </ul>
+        <ul class="navbar-nav ms-auto">
+          @if(!authService.isLoggedIn()) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+            </li>
+          }
+        </ul>
       </div>
       <app-shopping-cart></app-shopping-cart>
     </div>

@@ -4,7 +4,7 @@ import { provideHttpClient,withInterceptors } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { AppModule } from './app/app.module';
 
-import { authGuard } from './app/guards/auth.guard';
+import { adminGuard } from './app/guards/admin.guard';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
 
 import { AppComponent } from './app/app.component';
@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'admin',
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
     component: AdminComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
