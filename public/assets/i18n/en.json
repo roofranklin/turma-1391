@@ -1,0 +1,9 @@
+{
+    "NAVIGATION": {
+        "HOME": "Home",
+        "PRODUCTS": "Products",
+        "ABOUT": "About",
+        "ADMIN": "Administrator",
+        "LOGIN": "Login"
+    }
+}

@@ -8,22 +8,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="/">{{ 'NAVIGATION.HOME' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/products">Produtos</a>
+            <a class="nav-link" routerLink="/products">{{ 'NAVIGATION.PRODUCTS' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/about">Sobre Nós</a>
+            <a class="nav-link" routerLink="/about">{{ 'NAVIGATION.ABOUT' | translate }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin">Area administrativa</a>
+            <a class="nav-link" routerLink="/admin">{{ 'NAVIGATION.ADMIN' | translate }}</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           @if(!authService.isLoggedIn()) {
             <li class="nav-item">
-              <a class="nav-link" routerLink="/login">Login</a>
+              <a class="nav-link" routerLink="/login">{{ 'NAVIGATION.LOGIN' | translate }}</a>
             </li>
           } @else {
             <li class="nav-item">
@@ -31,6 +31,7 @@
             </li>
           }
         </ul>
+        <app-language-switcher></app-language-switcher>
       </div>
       <app-shopping-cart></app-shopping-cart>
     </div>

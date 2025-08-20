@@ -1,11 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
-import { provideHttpClient,withInterceptors } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { EnvironmentProviders, importProvidersFrom } from '@angular/core';
 import { AppModule } from './app/app.module';
 
 import { adminGuard } from './app/guards/admin.guard';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader, TRANSLATE_HTTP_LOADER_CONFIG } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app/app.component';
 import { LoginComponent } from './app/pages/login/login.component';
@@ -43,10 +45,27 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent },
 ];
 
+export function HttpLoaderFactory(): TranslateHttpLoader {
+  return new TranslateHttpLoader();
+}
+
+export function provideTranslation(): EnvironmentProviders {
+  return importProvidersFrom(
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+      }
+    })
+  );
+}
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
-    importProvidersFrom(AppModule)
+    importProvidersFrom(AppModule),
+    provideTranslation(),
+    { provide: TRANSLATE_HTTP_LOADER_CONFIG, useValue: '/assets/i18n/' }
   ]
 }).catch(err => console.error(err));
