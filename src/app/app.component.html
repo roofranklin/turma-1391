@@ -27,6 +27,7 @@
             </li>
           } @else {
             <li class="nav-item">
+              <p>{{ 'WELCOME_MESSAGE' | translate: { username: authService.getUserName() } }}</p>
               <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
             </li>
           }

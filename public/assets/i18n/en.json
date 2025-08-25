@@ -1,9 +1,17 @@
 {
+    "WELCOME_MESSAGE": "Welcome, {{ username }}!",
     "NAVIGATION": {
         "HOME": "Home",
         "PRODUCTS": "Products",
         "ABOUT": "About",
         "ADMIN": "Administrator",
-        "LOGIN": "Login"
+        "LOGIN": "Login",
+        "LOGOUT": "Logout"
+    },
+    "PRODUCT": {
+        "DETAILS": "Product Details",
+        "PRICE": "Price",
+        "CATEGORY": "Category",
+        "ADD_TO_CART": "Add to Cart"
     }
 }
