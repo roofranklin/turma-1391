@@ -1,11 +1,12 @@
 import { ApplicationConfig, importProvidersFrom, EnvironmentProviders } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
 import { provideHttpClient, withInterceptors, HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader, TRANSLATE_HTTP_LOADER_CONFIG } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { routes } from './app.routes'; 
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export function provideTranslation(): EnvironmentProviders {
   return importProvidersFrom([
@@ -25,7 +26,7 @@ export function HttpLoaderFactory(): TranslateHttpLoader {
 
 export const appConfig: ApplicationConfig = {
   providers: [ 
-    provideRouter(routes),
+    provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withInterceptors([authInterceptor])),
     importProvidersFrom(
         TranslateModule.forRoot({
@@ -37,6 +38,6 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideTranslation(),
-    { provide: TRANSLATE_HTTP_LOADER_CONFIG, useValue: { prefix: '/assets/i18n/', suffix: '.json' } }
+    { provide: TRANSLATE_HTTP_LOADER_CONFIG, useValue: { prefix: '/assets/i18n/', suffix: '.json' } }, provideClientHydration(withEventReplay())
   ]
 };
